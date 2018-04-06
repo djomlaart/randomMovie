@@ -1,5 +1,8 @@
 import processing.video.*;
 import deadpixel.keystone.*;
+import java.util.Collections;
+import java.util.Random;
+
 
 
 //ArrayList<Movie>   moviesPlaying = new ArrayList<Movie>();
@@ -11,12 +14,18 @@ String[] B = {"/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/COLOVI
 String[] C = {"/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/COLOVIC 03.mov", "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/karan 03.mov",
 "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/ntesla 03.mov", "nula"};
 
-String[][][] Formulas= {{A, B, C}, {C, A, B}, {B, C, A}};
+String[][][] Formulas= {{A, A, A}, {C, C, B}, {B, B, A}};
+String[][] sFormulas= {{"A", "A", "A"}, {"C", "C", "B"}, {"B", "B", "A"}};
+
+
+
 ArrayList<Movie> playlist = new ArrayList<Movie>();  
 Movie currentMovie;
 int index = 0; 
 int fIndex = 0;
 float movieEndDuration = 0.049719;//a 'magic number' helpful to find out when a movie finishes playing
+
+IntDict tracking;
 
 
 
@@ -24,6 +33,17 @@ float movieEndDuration = 0.049719;//a 'magic number' helpful to find out when a 
 void setup() {
   fullScreen();
   frameRate(30);
+  
+  tracking = new IntDict();
+  
+  tracking.set("A", 0); 
+  tracking.set("B", 0); 
+  tracking.set("C", 0);
+  tracking.set("D", 0); 
+  tracking.set("E", 0); 
+  tracking.set("F", 0); 
+  tracking.set("G", 0); 
+  tracking.set("H", 0); 
   
   playlist=newFormula();
   index=0;
@@ -34,6 +54,7 @@ void setup() {
 
 
 void draw() {
+  background(0);
   
   /* i should probably move read in somewhere else */
   /*if (currentMovie.available()) {
@@ -47,12 +68,14 @@ void draw() {
 
 
 void movieEvent(Movie m) {
-  m.read();
+  if (m.available()){
+      m.read();
+  }
+
   
   // here i'm just cheking if it's the end of the movie
-  print(m.time());
-  print(m.duration());
   if( m.time() + movieEndDuration>= m.duration() ) {
+   
     print("movie_end");
     // if we've havent reached end of the formula/list, we just play next video from the formula/list
     if (index<playlist.size()-1){
@@ -80,22 +103,30 @@ ArrayList<Movie> newFormula(){
   // pick random formula
 
   fIndex = int(random(Formulas.length));
+  print(fIndex);
   
   //delete all existing elements of the list
   for (int i = playlist.size() - 1; i >= 0; i--) {
     playlist.remove(i);
   }
   
+  shuffle();
+  
   // initialize new playlist
   // fix this
   for (int i = 0; i < Formulas[fIndex].length; i++) {
-    if (Formulas[fIndex][i][0] != "nula"){
-      Movie m = new Movie(this, Formulas[fIndex][i][0]);
+    if (Formulas[fIndex][i][tracking.get(sFormulas[fIndex][i])] != "nula"){
+      Movie m = new Movie(this, Formulas[fIndex][i][tracking.get(sFormulas[fIndex][i])]);
       playlist.add(m);
     }
     else
-    {print("nula");}
+    {
+      print("nula");
     }
+    
+    tracking.increment(sFormulas[fIndex][i]);
+    print(tracking);
+  }
   
   print("return");
   return playlist;
@@ -103,24 +134,39 @@ ArrayList<Movie> newFormula(){
 
 
 
+void shuffleArray(String[] array) {
+ 
+  // with code from WikiPedia; Fisher–Yates shuffle 
+  //@ <a href="http://en.wikipedia.org/wiki/Fisher" target="_blank" rel="nofollow">http://en.wikipedia.org/wiki/Fisher</a>–Yates_shuffle
+ 
+  Random rng = new Random();
+ 
+  // i is the number of items remaining to be shuffled.
+  for (int i = array.length; i > 1; i--) {
+ 
+    // Pick a random element to swap with the i-th element.
+    int j = rng.nextInt(i);  // 0 <= j <= i-1 (0-based array)
+ 
+    // Swap array elements.
+    String tmp = array[j];
+    array[j] = array[i-1];
+    array[i-1] = tmp;
+  }
+}
 
 
+void shuffle(){
+  shuffleArray(A);
+  shuffleArray(B);
+  shuffleArray(C);
+  print("shuffle done");
+}
 
 
 
 
 
 /*
-"A = [ddsda, dadad, adada]
-"B= [dadada, dadad, adada]
-"c= [dadada, dadad, dadad]
-
-"Formulas = [[A, B, C],
-"            [A, A, B],
-"            [B, C]
-"]
-
-
 
 
 "while True:
