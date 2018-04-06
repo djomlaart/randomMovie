@@ -14,10 +14,29 @@ String[] B = {"/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/COLOVI
 String[] C = {"/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/COLOVIC 03.mov", "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/karan 03.mov",
 "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/ntesla 03.mov", "nula"};
 
+
 String[][][] Formulas= {{A, A, A}, {C, C, B}, {B, B, A}};
 String[][] sFormulas= {{"A", "A", "A"}, {"C", "C", "B"}, {"B", "B", "A"}};
 
 
+/*String[][][] Formulas= {{A, A, A, B, C, D, E, F, G, H}, 
+              {H, B, C, D, E, E, A, G, G, G, F},
+              {H,B,C,D,G,A,E,F,G,H},
+              {A,B,A,C,D,E,F,G,H},
+              {A,B,C,D,E,F,G,H},
+              {A,D,D,D,B,C,E,F,F,G,G,G,H}, 
+              {C,C,C,A,B,B,G,E,E,E,E,D,D,D,D,D,D,D,F,H}};
+
+
+String[][] sFormulas= {{"A"," A","A","B","C","D","E","F"," G","H"},
+                      {"H"," B"," C"," D"," E"," E"," A"," G"," G"," G"," F"},
+                      {"H","B","C","D","G","A","E","F","G","H"},
+                      {"A","B","A","C","D","E","F","G","H"},
+                      {"A","B","C","D","E","F","G","H"},
+                      {"A","D","D","D","B","C","E","F","F","G","G","G","H"},
+                      {"C","C","C","A","B","B","G","E","E","E","E","D","D","D","D","D","D","DF","H"}};
+
+*/
 
 ArrayList<Movie> playlist = new ArrayList<Movie>();  
 Movie currentMovie;
