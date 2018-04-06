@@ -6,7 +6,6 @@ import java.util.Random;
 
 
 //ArrayList<Movie>   moviesPlaying = new ArrayList<Movie>();
-String intro= "/Users/mladenlazarevic/Desktop/tesla_test/A01.mov";
 String[] A = {"nula", "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/COLOVIC 01.mov", "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/karan 01.mov",
 "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/ntesla 01.mov", "nula"};
 String[] B = {"/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/COLOVIC 02.mov", "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/karan 02.mov",
@@ -19,7 +18,9 @@ String[][][] Formulas= {{A, A, A}, {C, C, B}, {B, B, A}};
 String[][] sFormulas= {{"A", "A", "A"}, {"C", "C", "B"}, {"B", "B", "A"}};
 
 
-/*String[][][] Formulas= {{A, A, A, B, C, D, E, F, G, H}, 
+/*
+
+String[][][] Formulas= {{A, A, A, B, C, D, E, F, G, H}, 
               {H, B, C, D, E, E, A, G, G, G, F},
               {H,B,C,D,G,A,E,F,G,H},
               {A,B,A,C,D,E,F,G,H},
@@ -191,6 +192,11 @@ void shuffle(){
   shuffleArray(A);
   shuffleArray(B);
   shuffleArray(C);
+  /*shuffleArray(D);
+  shuffleArray(E);
+  shuffleArray(F);
+  shuffleArray(G);
+  shuffleArray(H);*/
   print("shuffle done");
   print(A);
   print(B);
