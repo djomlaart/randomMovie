@@ -61,7 +61,12 @@ void draw() {
     currentMovie.read();
   }
   */
-  image(playlist.get(index), 0,0);
+  
+  // need to add this if in case list is empty
+  if(playlist.size()>0 && playlist.size()> index)
+  {
+    image(playlist.get(index), 0,0);
+  }
 }
 
 
@@ -103,6 +108,7 @@ ArrayList<Movie> newFormula(){
   // pick random formula
 
   fIndex = int(random(Formulas.length));
+  print("formula index");
   print(fIndex);
   
   //delete all existing elements of the list
@@ -110,12 +116,15 @@ ArrayList<Movie> newFormula(){
     playlist.remove(i);
   }
   
+  
   shuffle();
   
   // initialize new playlist
   // fix this
   for (int i = 0; i < Formulas[fIndex].length; i++) {
+    print(i);
     if (Formulas[fIndex][i][tracking.get(sFormulas[fIndex][i])] != "nula"){
+      print("nije nula");
       Movie m = new Movie(this, Formulas[fIndex][i][tracking.get(sFormulas[fIndex][i])]);
       playlist.add(m);
     }
@@ -156,14 +165,31 @@ void shuffleArray(String[] array) {
 
 
 void shuffle(){
+  
+  //need to re-set initial values
+  resettracking();
+  
   shuffleArray(A);
   shuffleArray(B);
   shuffleArray(C);
   print("shuffle done");
+  print(A);
+  print(B);
+  print(C);
 }
 
 
-
+void resettracking()
+{
+  tracking.set("A", 0); 
+  tracking.set("B", 0); 
+  tracking.set("C", 0);
+  tracking.set("D", 0); 
+  tracking.set("E", 0); 
+  tracking.set("F", 0); 
+  tracking.set("G", 0); 
+  tracking.set("H", 0); 
+}
 
 
 /*
