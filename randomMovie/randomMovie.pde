@@ -6,7 +6,8 @@ import java.util.Random;
 
 
 //ArrayList<Movie>   moviesPlaying = new ArrayList<Movie>();
-String[] A = {"nula", "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/COLOVIC 01.mov", "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/karan 01.mov",
+String naslov= "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/COLOVIC 01.mov";
+String[] A = {"/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/COLOVIC 01.mov", "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/karan 01.mov",
 "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/ntesla 01.mov", "nula"};
 String[] B = {"/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/COLOVIC 02.mov", "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/karan 02.mov",
 "/Users/mladenlazarevic/Desktop/tesla_test/randomScreenplay/ntesla 02.mov", "nula"};
@@ -139,13 +140,16 @@ ArrayList<Movie> newFormula(){
   
   shuffle();
   
-  // initialize new playlist
-  // fix this
+ // add this because of intro (naslov)
+ Movie m =  new Movie(this, naslov);
+  playlist.add(m); 
+  
+  // fill out the rest of the playlist
   for (int i = 0; i < Formulas[fIndex].length; i++) {
     print(i);
-    if (Formulas[fIndex][i][tracking.get(sFormulas[fIndex][i])] != "nula"){
+    if(Formulas[fIndex][i][tracking.get(sFormulas[fIndex][i])] != "nula"){
       print("nije nula");
-      Movie m = new Movie(this, Formulas[fIndex][i][tracking.get(sFormulas[fIndex][i])]);
+      m = new Movie(this, Formulas[fIndex][i][tracking.get(sFormulas[fIndex][i])]);
       playlist.add(m);
     }
     else
@@ -153,6 +157,7 @@ ArrayList<Movie> newFormula(){
       print("nula");
     }
     
+    // track when video from one of the group was played
     tracking.increment(sFormulas[fIndex][i]);
     print(tracking);
   }
@@ -198,9 +203,6 @@ void shuffle(){
   shuffleArray(G);
   shuffleArray(H);*/
   print("shuffle done");
-  print(A);
-  print(B);
-  print(C);
 }
 
 
