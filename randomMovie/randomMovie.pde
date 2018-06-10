@@ -52,7 +52,7 @@ IntDict tracking;
 
 
 void setup() {
-  fullScreen();
+  fullScreen(JAVA2D);
   frameRate(30);
   
   tracking = new IntDict();
@@ -69,6 +69,8 @@ void setup() {
   playlist=newFormula();
   index=0;
   playlist.get(index).play();
+  
+  noLoop();
 }
 
 
@@ -96,6 +98,7 @@ void draw() {
 void movieEvent(Movie m) {
   if (m.available()){
       m.read();
+      redraw=true;
   }
 
   
