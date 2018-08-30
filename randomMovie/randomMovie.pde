@@ -19,15 +19,7 @@ String[] A = {"/Users/mladenlazarevic/Desktop/wetransfer/a01.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/a08.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/a09.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/a10.mov", "/Users/mladenlazarevic/Desktop/wetransfer/a11.mov", "nula"};
-String[] B = {"/Users/mladenlazarevic/Desktop/wetransfer/b01.mov",
-"/Users/mladenlazarevic/Desktop/wetransfer/b02.mov",
-"/Users/mladenlazarevic/Desktop/wetransfer/b03.mov",
-"/Users/mladenlazarevic/Desktop/wetransfer/b05.mov",
-"/Users/mladenlazarevic/Desktop/wetransfer/b06.mov","nula"};
-String[] C = {"/Users/mladenlazarevic/Desktop/wetransfer/c01.mov",
-"/Users/mladenlazarevic/Desktop/wetransfer/c02.mov",
-"/Users/mladenlazarevic/Desktop/wetransfer/c03.mov",
-"/Users/mladenlazarevic/Desktop/wetransfer/c04.mov", "nula"};
+
 
 String[] D = {"/Users/mladenlazarevic/Desktop/wetransfer/d01.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/d02.mov",
@@ -47,7 +39,8 @@ String[] E = {"/Users/mladenlazarevic/Desktop/wetransfer/e01.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/e04.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/e05.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/e06.mov",
-"/Users/mladenlazarevic/Desktop/wetransfer/e07.mov", "/Users/mladenlazarevic/Desktop/wetransfer/e08.mov", "nula"};
+"/Users/mladenlazarevic/Desktop/wetransfer/e07.mov", 
+"/Users/mladenlazarevic/Desktop/wetransfer/e08.mov", "nula"};
 
 
 String[] F = {"/Users/mladenlazarevic/Desktop/wetransfer/f01.mov",
@@ -90,7 +83,16 @@ String[] J = {"/Users/mladenlazarevic/Desktop/wetransfer/j01.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/j02.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/j03.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/j04.mov",
-"/Users/mladenlazarevic/Desktop/wetransfer/j05.mov", "nula"};
+"/Users/mladenlazarevic/Desktop/wetransfer/j05.mov", 
+"/Users/mladenlazarevic/Desktop/wetransfer/b01.mov",
+"/Users/mladenlazarevic/Desktop/wetransfer/b02.mov",
+"/Users/mladenlazarevic/Desktop/wetransfer/b03.mov",
+"/Users/mladenlazarevic/Desktop/wetransfer/b05.mov",
+"/Users/mladenlazarevic/Desktop/wetransfer/b06.mov", 
+"/Users/mladenlazarevic/Desktop/wetransfer/c01.mov",
+"/Users/mladenlazarevic/Desktop/wetransfer/c02.mov",
+"/Users/mladenlazarevic/Desktop/wetransfer/c03.mov",
+"/Users/mladenlazarevic/Desktop/wetransfer/c04.mov","nula"};
 
 
 
@@ -121,7 +123,7 @@ ArrayList<Movie> playlist = new ArrayList<Movie>();
 Movie currentMovie;
 int index = 0; 
 int fIndex = 0;
-float movieEndDuration = 0.049719;//a 'magic number' helpful to find out when a movie finishes playing
+float movieEndDuration = 0.042;//a 'magic number' helpful to find out when a movie finishes playing
 
 IntDict tracking;
 
@@ -131,13 +133,11 @@ IntDict tracking;
 void setup() {
   fullScreen(P2D);
   //size(2880,1800);
-  frameRate(30);
+  frameRate(25);
   
   tracking = new IntDict();
   
   tracking.set("A", 0); 
-  tracking.set("B", 0); 
-  tracking.set("C", 0);
   tracking.set("D", 0); 
   tracking.set("E", 0); 
   tracking.set("F", 0); 
@@ -167,7 +167,8 @@ void draw() {
   // need to add this if in case list is empty
   if(playlist.size()>0 && playlist.size()> index)
   {
-    image(playlist.get(index), 0,0, 1440, 900);
+    //image(playlist.get(index), 0,0, 1440, 900);
+    image(playlist.get(index), 0,0, 1280, 720);
   }
 }
 
@@ -184,12 +185,12 @@ void movieEvent(Movie m) {
   // here i'm just cheking if it's the end of the movie
   if( m.time() + movieEndDuration>= m.duration() ) {
    
-    print("movie_end");
+   // print("movie_end");
     // if we've havent reached end of the formula/list, we just play next video from the formula/list
     if (index<playlist.size()-1){
-      print("next");
+    //  print("next");
+      playlist.get(index+1).play();
       index+=1;
-      playlist.get(index).play();
     }
     
     // if the video which had ended was last in the formula, we randomly pick the new formula
@@ -277,8 +278,6 @@ void shuffle(){
   resettracking();
   
   shuffleArray(A);
-  shuffleArray(B);
-  shuffleArray(C);
   shuffleArray(D);
   shuffleArray(E);
   shuffleArray(F);
@@ -292,8 +291,6 @@ void shuffle(){
 void resettracking()
 {
   tracking.set("A", 0); 
-  tracking.set("B", 0); 
-  tracking.set("C", 0);
   tracking.set("D", 0); 
   tracking.set("E", 0); 
   tracking.set("F", 0); 
