@@ -51,8 +51,7 @@ String[] F = {"/Users/mladenlazarevic/Desktop/wetransfer/f01.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/f06.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/f07.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/f08.mov",
-"/Users/mladenlazarevic/Desktop/wetransfer/f09.mov",
-"/Users/mladenlazarevic/Desktop/wetransfer/f10.mov", "nula"};
+"/Users/mladenlazarevic/Desktop/wetransfer/f09.mov", "nula"};
 
 String[] G = {"/Users/mladenlazarevic/Desktop/wetransfer/g01.mov",
 "/Users/mladenlazarevic/Desktop/wetransfer/g02.mov",
