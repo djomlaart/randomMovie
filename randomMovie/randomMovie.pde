@@ -118,11 +118,13 @@ String[][] sFormulas= {{"A","J","H","H","E","D","F","G"}, {"A","F","H","H","H","
 {"H","E","J","G"}};
 
 
+
 ArrayList<Movie> playlist = new ArrayList<Movie>();  
 Movie currentMovie;
 int index = 0; 
 int fIndex = 0;
 float movieEndDuration = 0.042;//a 'magic number' helpful to find out when a movie finishes playing
+
 
 IntDict tracking;
 
@@ -133,22 +135,26 @@ void setup() {
   fullScreen(P2D);
   //size(2880,1800);
   frameRate(25);
+
   
   tracking = new IntDict();
   
   tracking.set("A", 0); 
+
   tracking.set("D", 0); 
   tracking.set("E", 0); 
   tracking.set("F", 0); 
   tracking.set("G", 0); 
   tracking.set("H", 0);
   tracking.set("J", 0);
+
   
   playlist=newFormula();
   index=0;
   playlist.get(index).play();
   
   noLoop();
+
 }
 
 
@@ -168,6 +174,7 @@ void draw() {
   {
     //image(playlist.get(index), 0,0, 1440, 900);
     image(playlist.get(index), 0,0, 1280, 720);
+
   }
 }
 
@@ -178,6 +185,7 @@ void movieEvent(Movie m) {
   if (m.available()){
       m.read();
       redraw=true;
+
   }
 
   
@@ -190,6 +198,7 @@ void movieEvent(Movie m) {
     //  print("next");
       playlist.get(index+1).play();
       index+=1;
+
     }
     
     // if the video which had ended was last in the formula, we randomly pick the new formula
@@ -283,6 +292,7 @@ void shuffle(){
   shuffleArray(G);
   shuffleArray(H);
   shuffleArray(J);
+
   print("shuffle done");
 }
 
@@ -290,12 +300,14 @@ void shuffle(){
 void resettracking()
 {
   tracking.set("A", 0); 
+
   tracking.set("D", 0); 
   tracking.set("E", 0); 
   tracking.set("F", 0); 
   tracking.set("G", 0); 
   tracking.set("H", 0); 
   tracking.set("J", 0); 
+
 }
 
 
